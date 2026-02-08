@@ -20,6 +20,8 @@ function getKnightMoves([x, y]) {
 
 //2.
 function breadthFirstSearch(start, goal) {
+  if (start.toString() === goal.toString()) return [start];
+
   const queue = [];
   const visited = new Set();
 
