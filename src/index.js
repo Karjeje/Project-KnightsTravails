@@ -17,3 +17,28 @@ function getKnightMoves([x, y]) {
     .map(([dx, dy]) => [dx + x, dy + y])
     .filter(([newX, newY]) => newX >= 0 && newX <= 7 && newY >= 0 && newY <= 7);
 }
+
+//2.
+function breadthFirstSearch(start, goal) {
+  const queue = [];
+  queue.push({
+    position: start,
+    path: [start],
+  });
+
+  while (queue.length > 0) {
+    const current = queue.shift();
+
+    if (current.position[0] === goal[0] && current.position[1] === goal[1]) {
+      return current.path;
+    }
+
+    const moves = getKnightMoves(current.position);
+    moves.forEach((move) => {
+      queue.push({
+        position: move,
+        path: [...current.path, move],
+      });
+    });
+  }
+}
