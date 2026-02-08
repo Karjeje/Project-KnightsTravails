@@ -21,10 +21,14 @@ function getKnightMoves([x, y]) {
 //2.
 function breadthFirstSearch(start, goal) {
   const queue = [];
+  const visited = new Set();
+
   queue.push({
     position: start,
     path: [start],
   });
+
+  visited.add(start.toString());
 
   while (queue.length > 0) {
     const current = queue.shift();
@@ -35,10 +39,18 @@ function breadthFirstSearch(start, goal) {
 
     const moves = getKnightMoves(current.position);
     moves.forEach((move) => {
+      const key = move.toString();
+
+      if (visited.has(key)) return;
+
+      visited.add(key);
+
       queue.push({
         position: move,
         path: [...current.path, move],
       });
     });
   }
+
+  return null;
 }
