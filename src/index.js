@@ -56,3 +56,17 @@ function breadthFirstSearch(start, goal) {
 
   return null;
 }
+
+function knightMoves(start, end) {
+  const path = breadthFirstSearch(start, end);
+
+  if (!path) {
+    console.log('No path found.');
+    return null;
+  }
+
+  console.log(`You made it in ${path.length - 1} moves! Here's your path:`);
+  path.forEach((move) => console.log(move));
+
+  return path;
+}
